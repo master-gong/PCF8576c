@@ -88,6 +88,7 @@ static void iic_write_byte(char txd)
         delay_us(20); 
     }
 }
+
  
 void display_iic_set(char add,char dat) 
 {
@@ -97,6 +98,25 @@ void display_iic_set(char add,char dat)
     iic_write_byte(dat);
     iic_ack();
     iic_stop();
+}
+
+
+void display_iic_write_data(char subAdd, char cmd, char* dataBuff,char length)
+{
+    uint8_t cnt = 0;
+
+    iic_start();
+    iic_write_byte(subAdd & 0xfe);
+    iic_ack();
+    iic_write_byte(cmd);
+    iic_ack();
+
+    for(cnt = 0; cnt < length; cnt++){
+       iic_write_byte(*dataBuff++);     //发送字节
+       iic_ack();
+    }
+    iic_stop();//产生一个停止条件
+
 }
 
 void init_display_iic_gpio(void)

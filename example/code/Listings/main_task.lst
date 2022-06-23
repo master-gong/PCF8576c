@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.0.0   MAIN_TASK                                                         06/22/2022 19:42:54 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN_TASK                                                         06/23/2022 15:22:21 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN_TASK
 OBJECT MODULE PLACED IN .\Objects\main_task.obj
 COMPILER INVOKED BY: D:\Keil_v5_c51\C51\BIN\C51.EXE App\main_task.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\Bsp;.\Bsp\disp_i2c
-                    -;.\Bsp\tm1650) DEBUG OBJECTEXTEND PRINT(.\Listings\main_task.lst) TABS(2) OBJECT(.\Objects\main_task.obj)
+                    -;.\Bsp\pcf8576c) DEBUG OBJECTEXTEND PRINT(.\Listings\main_task.lst) TABS(2) OBJECT(.\Objects\main_task.obj)
 
 line level    source
 
@@ -12,8 +12,8 @@ line level    source
    2          #include "STC8H.h"
    3          #include "my_type.h"
    4          #include "disp_iic.h"
-   5          #include "AIP650.h"
-   6          
+   5          #include "lcd_watch.h"
+   6          #include "pcf8576c.h"
    7          
    8          /****************变量定义*****************************/
    9          _flag            xdata  ucFlag;                     /* 标志位变量 */
@@ -62,64 +62,72 @@ line level    source
   52   1          //如 显示1 =》 dispBuff.grid_data[i] = 1;
   53   1          //   显示A =》 dispBuff.grid_data[i] = LED_SIGE_A;
   54   1          //   显示E =》 dispBuff.grid_data[i] = LED_SIGE_E;
-C51 COMPILER V9.60.0.0   MAIN_TASK                                                         06/22/2022 19:42:54 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN_TASK                                                         06/23/2022 15:22:21 PAGE 2   
 
   55   1          //   不显示 =》 dispBuff.grid_data[i] = LED_SIGE_OFF;
-  56   1          for(i=0;i<4;i++){
+  56   1          for(i=0;i<18;i++){
   57   2              dispBuff.grid_data[i] = displayNum; 
   58   2          }
-  59   1      
-  60   1          dispBuff.brightness = 5; //亮度5
-  61   1          
-  62   1          dispBuff.flip = 1;
-  63   1          //dispBuff.mirror = 1;
-  64   1        
-  65   1          //秒 分隔符 闪烁实现
-  66   1          if(displayNum%2){
-  67   2              dispBuff.sec_flash = 1;
+  59   1        
+  60   1          
+  61   1         
+  62   1          if(displayNum%2){
+  63   2              dispBuff.sec_flash = 1;  // == 1   秒冒号显示    
+  64   2              dispBuff.iconMonth = 1;    // == 1   月日显示         
+  65   2              dispBuff.iconFace = 1;     // == 1   笑脸显示
+  66   2              dispBuff.iconFlower = 1;   // == 1   花显示
+  67   2              dispBuff.iconStep = 1;     // == 1   步显示
   68   2          }else{
   69   2              dispBuff.sec_flash = 0;
   70   2          }
-  71   1          //驱动调用
-  72   1          drive_air650_4b01(dispBuff);
-  73   1      }
-  74          
-  75          static void all_congfig(void)
-  76          { 
-  77   1      
-  78   1          INTCLKO = 0x40;
-  79   1          ucFlag.BYTE = 0;
-  80   1         
-  81   1          init_display_iic_gpio();  //显示端口初始化
-  82   1      
-  83   1          timer1_init(); //1ms定时基础
-  84   1          EA = 1;     //打开总中断
-  85   1      }
-  86          
-  87          
-  88          
-  89          int main(void)
-  90          {     
-  91   1          all_congfig();
-  92   1      
-  93   1          while(1)
-  94   1          {   
-  95   2              //----------10ms循环一次主函数---------------
-  96   2              cycle_delay();
-  97   2      
-  98   2              display_handle();
-  99   2      
- 100   2         }
- 101   1      }
- 102          
- 103          
- 104          
+  71   1          
+  72   1          
+  73   1          
+  74   1          
+  75   1          
+  76   1          
+  77   1          //驱动调用
+  78   1          drive_lcd_09inch(dispBuff);
+  79   1      }
+  80          
+  81          static void all_congfig(void)
+  82          { 
+  83   1      
+  84   1          INTCLKO = 0x40;
+  85   1          ucFlag.BYTE = 0;
+  86   1         
+  87   1          init_display_iic_gpio();  //显示端口初始化
+  88   1      
+  89   1          timer1_init(); //1ms定时基础
+  90   1          EA = 1;     //打开总中断
+  91   1      }
+  92          
+  93          
+  94          
+  95          int main(void)
+  96          {     
+  97   1          all_congfig();
+  98   1      
+  99   1          while(1)
+ 100   1          {   
+ 101   2              //----------10ms循环一次主函数---------------
+ 102   2              cycle_delay();
+ 103   2      
+ 104   2              display_handle();
+ 105   2      
+ 106   2         }
+ 107   1      }
+ 108          
+ 109          
+ 110          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    211    ----
+   CODE SIZE        =    209    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =     14    ----
+   XDATA SIZE       =     29    ----
+C51 COMPILER V9.60.0.0   MAIN_TASK                                                         06/23/2022 15:22:21 PAGE 3   
+
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

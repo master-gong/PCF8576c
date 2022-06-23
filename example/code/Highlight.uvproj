@@ -324,7 +324,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Bsp;.\Bsp\disp_i2c;.\Bsp\tm1650</IncludePath>
+              <IncludePath>.\Bsp;.\Bsp\disp_i2c;.\Bsp\pcf8576c</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -407,9 +407,14 @@
               <FilePath>.\Bsp\disp_i2c\disp_iic.c</FilePath>
             </File>
             <File>
-              <FileName>AIP650.c</FileName>
+              <FileName>lcd_watch.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Bsp\tm1650\AIP650.c</FilePath>
+              <FilePath>.\Bsp\pcf8576c\lcd_watch.c</FilePath>
+            </File>
+            <File>
+              <FileName>pcf8576c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Bsp\pcf8576c\pcf8576c.c</FilePath>
             </File>
           </Files>
         </Group>

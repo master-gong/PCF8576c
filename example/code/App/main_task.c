@@ -2,8 +2,8 @@
 #include "STC8H.h"
 #include "my_type.h"
 #include "disp_iic.h"
-#include "AIP650.h"
-
+#include "lcd_watch.h"
+#include "pcf8576c.h"
 
 /****************变量定义*****************************/
 _flag            xdata  ucFlag;                     /* 标志位变量 */
@@ -53,23 +53,29 @@ static void display_handle(void)
     //   显示A =》 dispBuff.grid_data[i] = LED_SIGE_A;
     //   显示E =》 dispBuff.grid_data[i] = LED_SIGE_E;
     //   不显示 =》 dispBuff.grid_data[i] = LED_SIGE_OFF;
-    for(i=0;i<4;i++){
+    for(i=0;i<18;i++){
         dispBuff.grid_data[i] = displayNum; 
     }
-
-    dispBuff.brightness = 5; //亮度5
-		
-    //dispBuff.flip = 1;
-    //dispBuff.mirror = 1;
   
-    //秒 分隔符 闪烁实现
+		
+   
     if(displayNum%2){
-        dispBuff.sec_flash = 1;
+        dispBuff.sec_flash = 1;  // == 1   秒冒号显示    
+			  dispBuff.iconMonth = 1;    // == 1   月日显示         
+        dispBuff.iconFace = 1;     // == 1   笑脸显示
+        dispBuff.iconFlower = 1;   // == 1   花显示
+        dispBuff.iconStep = 1;     // == 1   步显示
     }else{
         dispBuff.sec_flash = 0;
     }
+		
+		
+		
+		
+		
+		
     //驱动调用
-    drive_air650_4b01(dispBuff);
+    drive_lcd_09inch(dispBuff);
 }
 
 static void all_congfig(void)

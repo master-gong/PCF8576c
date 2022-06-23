@@ -241,7 +241,7 @@
       <GroupNumber>3</GroupNumber>
       <FileNumber>4</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Bsp\disp_i2c\disp_iic.c</PathWithFileName>
@@ -256,8 +256,20 @@
       <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Bsp\tm1650\AIP650.c</PathWithFileName>
-      <FilenameWithoutPath>AIP650.c</FilenameWithoutPath>
+      <PathWithFileName>.\Bsp\pcf8576c\lcd_watch.c</PathWithFileName>
+      <FilenameWithoutPath>lcd_watch.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Bsp\pcf8576c\pcf8576c.c</PathWithFileName>
+      <FilenameWithoutPath>pcf8576c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.0.0   DISP_IIC                                                          06/22/2022 19:42:54 PAGE 1   
+C51 COMPILER V9.60.0.0   DISP_IIC                                                          06/23/2022 15:22:22 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DISP_IIC
 OBJECT MODULE PLACED IN .\Objects\disp_iic.obj
 COMPILER INVOKED BY: D:\Keil_v5_c51\C51\BIN\C51.EXE Bsp\disp_i2c\disp_iic.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\Bsp;.\Bsp\
-                    -disp_i2c;.\Bsp\tm1650) DEBUG OBJECTEXTEND PRINT(.\Listings\disp_iic.lst) TABS(2) OBJECT(.\Objects\disp_iic.obj)
+                    -disp_i2c;.\Bsp\pcf8576c) DEBUG OBJECTEXTEND PRINT(.\Listings\disp_iic.lst) TABS(2) OBJECT(.\Objects\disp_iic.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   52   1          DISP_SDA_CRL;
   53   1          delay_us(40);
   54   1          DISP_SCL_SET;
-C51 COMPILER V9.60.0.0   DISP_IIC                                                          06/22/2022 19:42:54 PAGE 2   
+C51 COMPILER V9.60.0.0   DISP_IIC                                                          06/23/2022 15:22:22 PAGE 2   
 
   55   1          delay_us(10);
   56   1          DISP_SDA_SET;
@@ -100,37 +100,57 @@ line level    source
   88   2              delay_us(20); 
   89   2          }
   90   1      }
-  91           
-  92          void display_iic_set(char add,char dat) 
-  93          {
-  94   1          iic_start();
-  95   1          iic_write_byte(add); 
-  96   1          iic_ack();
-  97   1          iic_write_byte(dat);
-  98   1          iic_ack();
-  99   1          iic_stop();
- 100   1      }
- 101          
- 102          void init_display_iic_gpio(void)
- 103          {
- 104   1      
- 105   1          DISP_SDA_OUT();
- 106   1          DISP_SCL_OUT(); 
- 107   1          DISP_SCL_SET;
- 108   1          DISP_SDA_SET;
- 109   1          delay_ms(2);
- 110   1      }
- 111          
+  91          
+  92           
+  93          void display_iic_set(char add,char dat) 
+  94          {
+  95   1          iic_start();
+  96   1          iic_write_byte(add); 
+  97   1          iic_ack();
+  98   1          iic_write_byte(dat);
+  99   1          iic_ack();
+ 100   1          iic_stop();
+ 101   1      }
+ 102          
+ 103          
+ 104          void display_iic_write_data(char subAdd, char cmd, char* dataBuff,char length)
+ 105          {
+ 106   1          uint8_t cnt = 0;
+ 107   1      
+ 108   1          iic_start();
+ 109   1          iic_write_byte(subAdd & 0xfe);
+ 110   1          iic_ack();
+ 111   1          iic_write_byte(cmd);
+ 112   1          iic_ack();
+ 113   1      
+ 114   1          for(cnt = 0; cnt < length; cnt++){
+ 115   2             iic_write_byte(*dataBuff++);     //发送字节
+ 116   2             iic_ack();
+C51 COMPILER V9.60.0.0   DISP_IIC                                                          06/23/2022 15:22:22 PAGE 3   
+
+ 117   2          }
+ 118   1          iic_stop();//产生一个停止条件
+ 119   1      
+ 120   1      }
+ 121          
+ 122          void init_display_iic_gpio(void)
+ 123          {
+ 124   1      
+ 125   1          DISP_SDA_OUT();
+ 126   1          DISP_SCL_OUT(); 
+ 127   1          DISP_SCL_SET;
+ 128   1          DISP_SDA_SET;
+ 129   1          delay_ms(2);
+ 130   1      }
+ 131          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    262    ----
+   CODE SIZE        =    346    ----
    CONSTANT SIZE    =   ----    ----
-C51 COMPILER V9.60.0.0   DISP_IIC                                                          06/22/2022 19:42:54 PAGE 3   
-
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =   ----       7
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

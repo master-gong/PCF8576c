@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.0.0   TIME                                                              06/22/2022 19:42:54 PAGE 1   
+C51 COMPILER V9.60.0.0   TIME                                                              06/23/2022 15:22:22 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TIME
 OBJECT MODULE PLACED IN .\Objects\time.obj
 COMPILER INVOKED BY: D:\Keil_v5_c51\C51\BIN\C51.EXE Bsp\time\time.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\Bsp;.\Bsp\disp_i2c
-                    -;.\Bsp\tm1650) DEBUG OBJECTEXTEND PRINT(.\Listings\time.lst) TABS(2) OBJECT(.\Objects\time.obj)
+                    -;.\Bsp\pcf8576c) DEBUG OBJECTEXTEND PRINT(.\Listings\time.lst) TABS(2) OBJECT(.\Objects\time.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   51          // 版本: V1.0, 2015-1-12
   52          //========================================================================
   53          void timer1_interrupt (void) interrupt 3
-C51 COMPILER V9.60.0.0   TIME                                                              06/22/2022 19:42:54 PAGE 2   
+C51 COMPILER V9.60.0.0   TIME                                                              06/23/2022 15:22:22 PAGE 2   
 
   54          {
   55   1        //-----------主函数10ms计数实现-start----------

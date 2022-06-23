@@ -18,6 +18,7 @@
 
 extern void init_display_iic_gpio(void);
 extern void display_iic_set(char add,char dat);
+void display_iic_write_data(char subAdd, char cmd, char* dataBuff,char length);
 
 
 #endif

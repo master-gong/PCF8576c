@@ -2,6 +2,7 @@
 ".\Objects\main_task.obj",
 ".\Objects\time.obj",
 ".\Objects\disp_iic.obj",
-".\Objects\AIP650.obj" 
+".\Objects\lcd_watch.obj",
+".\Objects\pcf8576c.obj" 
 TO ".\Objects\Highlight" 
 PRINT(".\Listings\Highlight.m51") RAMSIZE(256) 
